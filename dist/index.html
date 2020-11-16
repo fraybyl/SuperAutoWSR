@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>SuperAuto</title>
+	<link rel="stylesheet" type="text/css" href="css/base.css">
+	<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+	<div class="screen">
+		<canvas class="screen-game" style="display: block" id="canvas"></canvas>
+	</div>
+	<div class="user-info">
+		<span class="game-panel-scores ">Score: <span id="UserScore">0</span></span>
+		<div>
+			<button id="ButtonStart"> Start </button>
+		</div>
+		<div>
+			<span class="game-panel-scores ">Timer: <span id="TimerCount">20</span></span>
+		</div>
+		<img src="img/Title2.png" class="screen" style="display: block; height: 100vh;" id="title">
+	</div>
+	<script type="text/javascript">
+		let ButtonStart = document.querySelector(`#ButtonStart`);
+		let Title = document.querySelector('#title');
+		ButtonStart.onclick = () => {
+			Title.style.visibility = `hidden`;
+			let script = document.createElement(`script`);
+			script.type = `text/javascript`;
+			script.id = `ScriptLoad`;
+			script.src = `js/superauto.js`;
+			if(document.querySelector(`#ScriptLoad`)) {
+				location.reload();
+			} else {}
+			document.getElementsByTagName(`body`)[0].appendChild(script);
+		}
+	</script>
+
+</body>
+
+</html>
