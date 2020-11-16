@@ -75,7 +75,8 @@ let state = {
 
 class BackGround {
 	constructor(height, image, speed) {
-		this.y = height;
+		this.height = height
+		this.y = this.height;
 		this.image = image;
 		this.speed = speed
 	}
@@ -89,7 +90,7 @@ class BackGround {
 	update(dt) {
 		this.draw();
 		this.y += this.speed * dt;
-		if (this.y >= this.image[`bg.jpg`].height - this.height) {
+		if(this.y >= this.image[`bg.jpg`].height - this.height){
 			this.y = this.height;
 		}
 	}
