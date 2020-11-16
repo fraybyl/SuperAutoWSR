@@ -1,5 +1,4 @@
 const path = require('path');
-const GitRevisionPlugin = require('git-revision-webpack-plugin')
 
 module.exports = {
   mode: "development",
@@ -8,9 +7,6 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'js/superauto.js'
   },
-  plugins: [
-    new GitRevisionPlugin()
-  ],
   devServer: {
     contentBase: './dist',
   },

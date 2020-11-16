@@ -1,19 +1,19 @@
-const canvas = document.querySelector('#canvas');
-const ctx = canvas.getContext('2d');
-let UserScore = document.querySelector('#UserScore');
-let Timer = document.querySelector('#TimerCount');
+const canvas = document.querySelector(`#canvas`);
+const ctx = canvas.getContext(`2d`);
+let UserScore = document.querySelector(`#UserScore`);
+let Timer = document.querySelector(`#TimerCount`);
 
 const CacheImages = [
-	'bg.jpg',
-	'player.png',
-	'player_left.png',
-	'player_right.png',
-	'car1.png',
-	'car2.png',
-	'car3.png',
-	'pit2.png',
-	'bank1.png',
-	'title.png'
+	`bg.jpg`,
+	`player.png`,
+	`player_left.png`,
+	`player_right.png`,
+	`car1.png`,
+	`car2.png`,
+	`car3.png`,
+	`pit2.png`,
+	`bank1.png`,
+	`title.png`
 ];
 const Images = {};
 
@@ -25,19 +25,19 @@ let PromisesArray = CacheImages.map(ImageUrl => {
 			Images[ImageUrl] = img;
 			resolve();
 		};
-		img.src = 'img/' + ImageUrl;
+		img.src = `img/` + ImageUrl;
 	});
 	return Promises;
 });
 
-window.addEventListener('resize', Resize())
-window.addEventListener("keydown", event => {
+window.addEventListener(`resize`, Resize())
+window.addEventListener(`keydown`, event => {
 	if (event.defaultPrevented) { return; }
 	let key = state.keyMap[event.code]
 	state.pressedKeys[key] = true
 }, false);
 
-window.addEventListener("keyup", event => {
+window.addEventListener(`keyup`, event => {
 	if (event.defaultPrevented) { return; }
 	let key = state.keyMap[event.code];
 	state.pressedKeys[key] = false
@@ -68,8 +68,8 @@ let state = {
 		ArrowLeft: false
 	},
 	keyMap: {
-		ArrowRight: 'ArrowRight',
-		ArrowLeft: 'ArrowLeft'
+		ArrowRight: `ArrowRight`,
+		ArrowLeft: `ArrowLeft`
 	}
 };
 
@@ -81,9 +81,9 @@ class BackGround {
 	}
 
 	draw() {
-		ctx.drawImage(this.image['bg.jpg'],
+		ctx.drawImage(this.image[`bg.jpg`],
 			0,
-			-(this.image['bg.jpg'].height - this.y));
+			-(this.image[`bg.jpg`].height - this.y));
 	}
 
 	update(dt) {
@@ -107,16 +107,16 @@ class Player {
 	}
 
 	draw() {
-		ctx.drawImage(this.images['player.png'],
+		ctx.drawImage(this.images[`player.png`],
 			this.x,
 			this.y,
-			this.images['player.png'].width * this.scale,
-			this.images['player.png'].height * this.scale);
+			this.images[`player.png`].width * this.scale,
+			this.images[`player.png`].height * this.scale);
 	}
 
 	collision() {
-		if (this.x + this.images['player.png'].width * this.scale >= this.width) {
-			this.x = this.width - this.images['player.png'].width * this.scale;
+		if (this.x + this.images[`player.png`].width * this.scale >= this.width) {
+			this.x = this.width - this.images[`player.png`].width * this.scale;
 		} else if (this.x <= 0) {
 			this.x = 0;
 		}
@@ -124,18 +124,18 @@ class Player {
 
 	update(dt) {
 		if (this.pressedKeys.ArrowLeft) {
-			ctx.drawImage(this.images['player_right.png'],
+			ctx.drawImage(this.images[`player_right.png`],
 				this.x,
 				this.y,
-				this.images['player_right.png'].width * this.scale,
-				this.images['player_right.png'].height * this.scale);
+				this.images[`player_right.png`].width * this.scale,
+				this.images[`player_right.png`].height * this.scale);
 			this.x -= this.speed * dt;
 		} else if (this.pressedKeys.ArrowRight) {
-			ctx.drawImage(this.images['player_left.png'],
+			ctx.drawImage(this.images[`player_left.png`],
 				this.x,
 				this.y,
-				this.images['player_left.png'].width * this.scale,
-				this.images['player_left.png'].height * this.scale);
+				this.images[`player_left.png`].width * this.scale,
+				this.images[`player_left.png`].height * this.scale);
 			this.x += this.speed * dt;
 		} else {
 			this.draw();
@@ -170,7 +170,7 @@ class OtherObjects {
 			&& player.x <= this.x + this.image.width * this.scale
 			&& player.y + Images[`player.png`].height * this.scale >= this.y
 			&& player.y <= this.y + this.image.height * this.scale) {
-			if (this.image === Images['bank1.png']) {
+			if (this.image === Images[`bank1.png`]) {
 				score++;
 				UserScore.innerHTML = score;
 			} else {
@@ -214,18 +214,18 @@ function spawnEntity() {
 		let img;
 		let rand = Math.random()
 		if (rand < 0.2) {
-			img = Images['car2.png'];
+			img = Images[`car2.png`];
 		} else if (rand < 0.4) {
-			img = Images['car3.png'];
+			img = Images[`car3.png`];
 		} else if (rand < 0.6) {
-			img = Images['car1.png'];
+			img = Images[`car1.png`];
 		} else if (rand < 0.8) {
-			img = Images['pit2.png'];
+			img = Images[`pit2.png`];
 		} else {
-			img = Images['bank1.png'];
+			img = Images[`bank1.png`];
 		}
 
-		const x = ~~(Math.random() * (canvas.width - img.width)) + (img.width * SCALE) // ~~ it's bitwise operator
+		const x = ~~(Math.random() * (canvas.width - img.width)) + (img.width * SCALE) // ~~ it`s bitwise operator
 		const y = -500;
 		Objects.push(new OtherObjects(x, y, img, SPEED, SCALE));
 	}, 1000);
@@ -240,7 +240,7 @@ function Resize() {
 function GameOver() {
 	ctx.beginPath();
 	ctx.fillStyle = `red`;
-	ctx.font = '48px arial';
+	ctx.font = `48px arial`;
 	ctx.textAlign = `center`;
 	ctx.fillText(`Your score: ${score}. If you want play. Click on button`, canvas.width / 2, canvas.height / 2);
 	ctx.fill();
