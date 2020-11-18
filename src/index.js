@@ -226,7 +226,7 @@ function spawnEntity() {
 			img = Images[`bank1.png`];
 		}
 
-		const x = ~~(Math.random() * (canvas.width - img.width)) + (img.width * SCALE) // ~~ it`s bitwise operator
+		const x = ~~(Math.random() * (canvas.width - img.width * SCALE)) + (img.width * SCALE) // ~~ it`s bitwise operator
 		const y = -500;
 		Objects.push(new OtherObjects(x, y, img, SPEED, SCALE));
 	}, 1000);
