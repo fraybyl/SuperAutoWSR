@@ -30,14 +30,14 @@ let PromisesArray = CacheImages.map(ImageUrl => {
 	return Promises;
 });
 
-window.addEventListener(`resize`, Resize())
-window.addEventListener(`keydown`, event => {
+addEventListener(`resize`, Resize())
+addEventListener(`keydown`, event => {
 	if (event.defaultPrevented) { return; }
 	let key = state.keyMap[event.code]
 	state.pressedKeys[key] = true
 }, false);
 
-window.addEventListener(`keyup`, event => {
+addEventListener(`keyup`, event => {
 	if (event.defaultPrevented) { return; }
 	let key = state.keyMap[event.code];
 	state.pressedKeys[key] = false
